@@ -1,0 +1,31 @@
+{
+  "name": "jobscrapperbackend",
+  "version": "1.0.0",
+  "description": "Express Backend for Job Scraper",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "dev:all": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"node --watch src/app.js\" \"pnpm --prefix ../JobScrapperFrontend dev\""
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.7.9",
+    "better-sqlite3": "^12.9.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "graphql": "^16.13.2",
+    "graphql-yoga": "^5.21.0",
+    "pdf-parse": "^1.1.1",
+    "uuid": "^11.0.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
