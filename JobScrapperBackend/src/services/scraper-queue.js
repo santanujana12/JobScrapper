@@ -1,10 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDatabase } from '../db/schema.js';
-import { scrapeRemoteOk } from '../scrapers/remoteok.js';
-import { scrapeRemotive } from '../scrapers/remotive.js';
-import { scrapeArbeitnow } from '../scrapers/arbeitnow.js';
-import { scrapeJobicy } from '../scrapers/jobicy.js';
-import { scrapeHimalayas } from '../scrapers/himalayas.js';
+import { scrapeGreenhouse } from '../scrapers/greenhouse.js';
+import { scrapeLever }      from '../scrapers/lever.js';
+import { scrapeAshby }      from '../scrapers/ashby.js';
+import { scrapeHimalayas }  from '../scrapers/himalayas.js';
 import { matchJobs } from './matching.js';
 
 // Shared in-memory task store (module-scoped closure)
@@ -48,22 +47,20 @@ async function processTask(taskId) {
 
     console.log(`Starting scrape for ${jobTitle} in ${location} across multiple sites`);
 
-    // Run all scrapers concurrently
-    const [remoteOkResult, remotiveResult, arbeitnowResult, jobicyResult, himalayasResult] =
+    // Run ATS scrapers + Himalayas concurrently.
+    // Each ATS scraper fans out across all known companies internally.
+    const [greenhouseResult, leverResult, ashbyResult, himalayasResult] =
       await Promise.allSettled([
-        scrapeRemoteOk(jobTitle, location),
-        scrapeRemotive(jobTitle, location),
-        scrapeArbeitnow(jobTitle, location),
-        scrapeJobicy(jobTitle, location),
+        scrapeGreenhouse(jobTitle, location),
+        scrapeLever(jobTitle, location),
+        scrapeAshby(jobTitle, location),
         scrapeHimalayas(jobTitle, location),
       ]);
 
-    // Collect successfully scraped jobs and log per-source results
     const scraperResults = [
-      { name: 'RemoteOK',   result: remoteOkResult },
-      { name: 'Remotive',   result: remotiveResult },
-      { name: 'Arbeitnow',  result: arbeitnowResult },
-      { name: 'Jobicy',     result: jobicyResult },
+      { name: 'Greenhouse', result: greenhouseResult },
+      { name: 'Lever',      result: leverResult },
+      { name: 'Ashby',      result: ashbyResult },
       { name: 'Himalayas',  result: himalayasResult },
     ];
 

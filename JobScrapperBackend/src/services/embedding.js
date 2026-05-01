@@ -12,7 +12,7 @@ export async function getEmbedding(text) {
       return Array(768).fill(0).map(() => Math.random());
     }
     
-    const model = genAI.getGenerativeModel({ model: 'embedding-001' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-embedding-001' });
     const result = await model.embedContent(text);
     return result.embedding.values;
   } catch (error) {

@@ -7,11 +7,15 @@ import { ExternalLink, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-rea
 const PAGE_SIZE = 10;
 
 const SOURCE_LABELS = {
-  remoteok:  { label: 'RemoteOK',  color: 'bg-green-500/20  text-green-400  border-green-500/30' },
-  remotive:  { label: 'Remotive',  color: 'bg-blue-500/20   text-blue-400   border-blue-500/30' },
-  arbeitnow: { label: 'Arbeitnow', color: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
-  jobicy:    { label: 'Jobicy',    color: 'bg-purple-500/20 text-purple-400 border-purple-500/30' },
-  himalayas: { label: 'Himalayas', color: 'bg-cyan-500/20   text-cyan-400   border-cyan-500/30' },
+  greenhouse: { label: 'Greenhouse', color: 'bg-green-500/20  text-green-400  border-green-500/30' },
+  lever:      { label: 'Lever',      color: 'bg-blue-500/20   text-blue-400   border-blue-500/30' },
+  ashby:      { label: 'Ashby',      color: 'bg-violet-500/20 text-violet-400 border-violet-500/30' },
+  himalayas:  { label: 'Himalayas',  color: 'bg-cyan-500/20   text-cyan-400   border-cyan-500/30' },
+  // Legacy sources kept in case old results are still in the DB
+  remoteok:   { label: 'RemoteOK',   color: 'bg-gray-500/20   text-gray-400   border-gray-500/30' },
+  remotive:   { label: 'Remotive',   color: 'bg-gray-500/20   text-gray-400   border-gray-500/30' },
+  arbeitnow:  { label: 'Arbeitnow',  color: 'bg-gray-500/20   text-gray-400   border-gray-500/30' },
+  jobicy:     { label: 'Jobicy',     color: 'bg-gray-500/20   text-gray-400   border-gray-500/30' },
 };
 
 // ---------------------------------------------------------------------------
